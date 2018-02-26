@@ -1,6 +1,5 @@
 require 'charyf' # TODO require 'charyf/engine/intent/processors/processor'
 
-require 'pry'
 require 'wit'
 
 module WitAI
