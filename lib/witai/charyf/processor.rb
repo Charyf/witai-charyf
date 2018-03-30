@@ -32,14 +32,7 @@ module WitAI
             return unknown
           end
 
-          data = intent["value"].split(":")
-          if data.size < 2
-            return unknown
-          end
-
-          action = data.pop
-          skill = data.delete_at(0)
-          controller = (data.size > 0 ? data : ["Base"]).join("::")
+          intent_name = intent["value"]
           confidence = intent["confidence"]
 
           matches = {}
@@ -47,11 +40,13 @@ module WitAI
             matches[entity_name] = entities[entity_name].map { |match| match.select { |k,v| ["value", "grain"].include? k } }
           end
 
-          return ::Charyf::Engine::Intent.new(skill, controller, action, confidence, matches)
+          return ::Charyf::Engine::Intent.new(intent_name, confidence, matches)
         end
 
         unknown
       rescue Wit::Error => error
+        Charyf.error_handlers.handle_exception(error)
+
         return unknown
       end
 

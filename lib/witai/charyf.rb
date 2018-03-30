@@ -7,16 +7,12 @@ module WitAI
   module Charyf
     class Extension < ::Charyf::Extension
 
+      config.api_key = nil
+
     end
 
-    extend self
-
-    def api_key
-      @api_key
-    end
-
-    def api_key=(key)
-      @api_key = key
+    def self.api_key
+      Extension.config.api_key
     end
 
   end
