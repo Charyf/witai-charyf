@@ -6,33 +6,48 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+### New application
+When generating new charyf app, you can install wit intent processor automatically by specifying
+``charyf new [app_nane] --intent-processors=wit``
 
+### Existing application
+
+To install wit processor to existing charyf application
+Add gem to your gemfile
 ```ruby
-gem 'wit-nlp-charyf'
+gem 'adapt-charyf', '>= 0.2.4'
 ```
 
-And then execute:
+Edit *enabled_intent_processors* inside *config/application.rb*
+```ruby
+ config.enabled_intent_processors = [:wit, etc...]
+```
 
-    $ bundle
+Add the require inside inside *config/load.rb*
+```ruby
+require 'witai/charyf'
+```
 
-Or install it yourself as:
+### Configure
 
-    $ gem install wit-nlp-charyf
+If you dont set your api keys for wit application, the initialization will throw  
+``/Users/rycco/.rvm/gems/ruby-2.2.2@charyf/gems/witai-charyf-0.2.0/lib/witai/charyf/processor.rb:18:in `initialize': WitAI::Charyf.api_key has not been set (WitAI::Charyf::Processor::NoKeyProvided)``
+
+To configure create file *config/initializers/witai.rb* and set the API key
+```ruby
+require 'witai/charyf'
+
+WitAI::Charyf::Extension.configure do
+  config.api_key = 'SOME_CLIENT_API_KEY'
+end     
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To define intent visit http://wit.ai/ and define an intent and entities inside your application.
+Don't forget to wait for training to finish.
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/wit-nlp-charyf. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Define routing as usually using &config/routes.rb*
 
 ## License
 
