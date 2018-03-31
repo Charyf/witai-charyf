@@ -47,7 +47,7 @@ end
 To define intent visit http://wit.ai/ and define an intent and entities inside your application.
 Don't forget to wait for training to finish.
 
-Define routing as usually using &config/routes.rb*
+Define routing as usually using *config/routes.rb*
 
 ## License
 
