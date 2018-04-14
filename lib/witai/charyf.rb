@@ -7,6 +7,10 @@ module WitAI
   module Charyf
     class Extension < ::Charyf::Extension
 
+      generators do
+        require_relative 'charyf/generators/install/install_generator'
+      end
+
       config.api_key = nil
 
     end
