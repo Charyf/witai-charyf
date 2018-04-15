@@ -17,7 +17,7 @@ module WitAI
           return unless behavior == :invoke
 
           say_status 'notice', "Wit installed" +
-              "\n\t\tDo not forget to set adapt intent processor in application configuration" +
+              "\n\t\tDo not forget to set wit intent processor in application configuration" +
               "\n\t\t\tconfig.enabled_intent_processors = [.., :wit, ..]", :green
         end
 
