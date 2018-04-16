@@ -11,6 +11,11 @@ module WitAI
         require_relative 'charyf/generators/install/install_generator'
       end
 
+      #
+      # Installers are automatically run if this gem is present during generation of new application
+      #
+      config.generators.installers << 'witai:install'
+
       config.api_key = nil
 
     end

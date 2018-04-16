@@ -14,7 +14,7 @@ module WitAI
         end
 
         def finalize
-          return unless behavior == :invoke
+          return if behavior != :invoke || options[:autorun]
 
           say_status 'notice', "Wit installed" +
               "\n\t\tDo not forget to set wit intent processor in application configuration" +
